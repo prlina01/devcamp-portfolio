@@ -10,7 +10,7 @@ class PortfoliosController < ApplicationController
   def show
     @portfolio_item = Portfolio.find(params[:id])
   end
-
+  
   def new
     @portfolio_item = Portfolio.new
     3.times { @portfolio_item.technologies.build }
