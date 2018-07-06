@@ -1,8 +1,8 @@
 class Portfolio < ApplicationRecord
   include Placeholder
-  has_many :technologies
+  has_many :technologies, dependent: :destroy
   accepts_nested_attributes_for :technologies,
-                                reject_if: lambda { |attrs| attrs['name'].blank?}
+                                        reject_if: lambda { |attrs| attrs['name'].blank?}
 
   validates_presence_of :title, :body, :main_image, :thumb_image
 
@@ -15,7 +15,7 @@ class Portfolio < ApplicationRecord
 
 
   def self.angular
-    where(title: 'Angular')
+    where(title: 'Angular').order()
   end
 
   scope :ruby_on_rails_portfolio_items, lambda { where(subtitle: 'Ruby on rails')}
