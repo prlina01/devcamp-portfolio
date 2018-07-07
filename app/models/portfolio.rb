@@ -14,7 +14,7 @@ class Portfolio < ApplicationRecord
   end
 
 
-  def self.angular
+  def angular
     where(title: 'Angular').order()
   end
 
