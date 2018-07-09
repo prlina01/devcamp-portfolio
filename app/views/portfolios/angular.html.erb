@@ -7,6 +7,6 @@
   <p><%= portfolio_item.body %></p> 
   <p><%= portfolio_item.main_image %></p>
   <p><%= image_tag portfolio_item.thumb_image unless portfolio_item.thumb_image.nil? %></p>
-  <%= link_to("Edit", edit_portfolio_path(portfolio_item.id)) %>
-  <%= link_to "Delete portfolio item", portfolio_path(portfolio_item.id), method: :delete, data: { confirm: 'Are you sure?'} %>
+  <%= link_to("Edit", edit_portfolio_path(portfolio_item.id)) if current_user?(:site_admin) %>
+  <%= link_to "Delete portfolio item", portfolio_path(portfolio_item.id), method: :delete, data: { confirm: 'Are you sure?'} if current_user?(:site_admin) %>
 <% end %>
