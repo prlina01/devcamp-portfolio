@@ -1,14 +1,10 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Title:</strong>
-  <%= @blog.title %>
-</p>
-
-<p>
-  <strong>Body:</strong>
-  <%= @blog.body %>
-</p>
-
-<%= link_to 'Edit', edit_blog_path(@blog) if current_user?(:site_admin) %> 
+<div class="blog-post">
+  <h2 class="blog-post-title"><%= @blog.title %></h2>
+  <p class="blog-post-meta">Published <%=distance_of_time_in_words @blog.created_at, Time.now %> ago.</p>
+  <p><%= @blog.body %></p>
+  <p>
+    <%= link_to "Delete blog", blog_path(@blog), method: :delete, data: {confirm: "Are you Sure"} if logged_in?(:site_admin)%>
+  </p>
+</div>
+<%= link_to 'Edit', edit_blog_path(@blog) if logged_in?(:site_admin) %> 
 <%= link_to 'Back', blogs_path %> 
