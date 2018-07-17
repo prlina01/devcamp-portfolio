@@ -13,7 +13,9 @@ class Portfolio < ApplicationRecord
     self.thumb_image ||=  Placeholder.image_generator(height: '350', width: '200')
   end
 
-
+  def self.by_position
+    order("position ASC")
+  end
   def angular
     where(title: 'Angular').order()
   end
