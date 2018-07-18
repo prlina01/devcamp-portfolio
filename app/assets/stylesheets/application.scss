@@ -28,7 +28,7 @@ a:hover {
 html,
 body {
   height: 100%;
-  background-color: #333;
+  // background-color: #333;
 }
 
 body {
@@ -109,4 +109,17 @@ body {
 .app-nav span {
   margin-left: 15px;
   margin-right: 15px;
+}
+
+#background {
+  position: fixed;
+  min-width: 100%;
+  min-height: 100%;
+  z-index: -100;
+  background: image-url('railsBG2.jpeg') ;
+  background-size: cover;
+}
+
+.crna_boja {
+  color:black;
 }

@@ -9,9 +9,10 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     
   </head>
-
+      <%= video_tag 'HardDrivePhotojpeg.mp4', id: 'background', autoplay:true, loop:true, muted: true, poster: 'railsBG2.jpg' %>
   <body class = "text-center">
     <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+
       <%= render "shared/home_nav", location: 'top' %>
       <%= yield %>
       <%= render "shared/home_footer" %>
