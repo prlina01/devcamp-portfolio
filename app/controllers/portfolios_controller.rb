@@ -24,27 +24,27 @@ class PortfoliosController < ApplicationController
 
 
   def create
+      respond_to :html, :json
     @portfolio_item = Portfolio.new(portfolio_params)
 
-    respond_to do |format|
       if @portfolio_item.save
-        format.html { redirect_to portfolios_path, notice: 'Your portfolio is now live'} 
+          redirect_to portfolios_path, notice: 'Portfolio was successfully created.' 
       end
   end
-end
 
   def edit
     @portfolio_item = Portfolio.find(params[:id])
-     3.times { @portfolio_item.technologies.build }
   end
 
   def update
+    @portfolio_item = Portfolio.find(params[:id])
     respond_to do |format|
-      @portfolio_item = Portfolio.find(params[:id])
-      if @portfolio_item.update_attributes(portfolio_params)
-        format.html {redirect_to portfolios_path, notice: 'Portfolio was updated successfully'}
+      if @portfolio_item.update(portfolio_params)
+        format.html { redirect_to portfolios_path, notice: 'Portfolio was successfully updated.' }
+        format.json { render :show, status: :ok, location: @portfolio_item }
       else
-        format.html { render :edit}
+        format.html { render :edit }
+        format.json { render json: @portfolio_item.errors, status: :unprocessable_entity }
       end
     end
   end

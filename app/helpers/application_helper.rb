@@ -52,4 +52,16 @@ nav_links << "<#{tag_type}><a href='#{item[:url]}' class='#{style} #{active? ite
   def active? path
     "active" if current_page? path    
   end
+
+  def alerts
+    alert = (flash[:alert] || flash[:error] || flash[:notice])
+
+    if alert
+      alert_generator alert
+    end
+  end
+
+  def alert_generator msg
+    js add_gritter(msg, title: "Prlina!")
+  end
 end

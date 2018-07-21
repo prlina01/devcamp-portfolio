@@ -16,7 +16,8 @@
       <%= render "shared/home_nav", location: 'top' %>
       <%= yield %>
       <%= render "shared/home_footer" %>
-      <%#= source_helper("application") %>
+      <%= alerts %>
+      <%= source_helper("application") %>
     </div>
   </body>
 </html>

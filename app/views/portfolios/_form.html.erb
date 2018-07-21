@@ -1,5 +1,9 @@
-<%#=form_with(model: #Portfolio, local: true) #do |form| %>
-<%= form_for(@portfolio_item) do |form| %>
+<%= form_with(model: portfolio, local: true) do |form| %>
+  <% if portfolio.errors.any? %>
+    <%= portfolio.errors.full_messages.each do |error| %>
+      <%= alert_generator %>
+    <% end %>
+  <% end %>
   <div class="row">
     <div class = "col-md-6">
       <div class="form-group">
@@ -26,10 +30,10 @@
     <h2>Technologies used:</h2>
 
     <div>
-      <%= form.fields_for :technologies do |technology_form| %>
-        <%= render 'tehnology_fields', f: technology_form %>
+      <%= fields_for :technologies do |technology_form| %>
+        <%= render 'technology_fields', f: technology_form %>
         <div>
-          <%= link_to_add_association 'Add Technology', f, :technologies %>
+          <%= link_to_add_association 'Add Technology', form, :technologies %>
         </div>
       <% end %>
     </div>
@@ -37,5 +41,5 @@
     <div class = "form-group">
       <%= form.submit "Save Portfolio Item", class: 'btn btn-primary btn-block' %>
     </div>
-    <% end %>
   </div>
+  <% end %>
