@@ -2,21 +2,11 @@
   <h2 class="blog-post-title"><%= @blog.title %></h2>
   <p class="blog-post-meta">Published <%=distance_of_time_in_words @blog.created_at, Time.now %> ago.</p>
   <p><%= @blog.body %></p>
-  <p>
-    <%= link_to "Delete blog", blog_path(@blog), method: :delete, data: {confirm: "Are you Sure"} if logged_in?(:site_admin)%>
-  </p>
+  <p><%= link_to "Delete blog", blog_path(@blog), method: :delete, data: {confirm: "Are you Sure"} if logged_in?(:site_admin)%></p>
   <%= link_to 'Edit', edit_blog_path(@blog) if logged_in?(:site_admin) %> 
   <%= link_to 'Back', blogs_path %> 
 </div>
 
-<% unless current_user.is_a? GuestUser %>
-  <%= form_for @comment, url: '#' do |f| %>
-    <div class="form-group">
-      <%= f.label :Content %>
-      <%= f.text_area :content, class: 'form-control', placeholder: 'Content' %>
-    </div>
-    <%= f.submit "Post Comment", class: 'btn btn-primary' %>
-  <% end %>
-<% end %>
+<%= render 'comments/comment_form' %>
 
 <%= render @blog.comments %>
